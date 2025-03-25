@@ -1,0 +1,45 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Shared Drive\\Projects\\Visual Studio Workspace\\Db8.Kanban\\Db8.Kanban.Blazor\\Db8.Kanban.Blazor\\obj\\Debug\\net8.0\\scopedcss\\projectbundle\\Db8.Kanban.Blazor.bundle.scp.css",
+      "PackagePath": "staticwebassets\\Db8.Kanban.Blazor.wjohbmrrva.bundle.scp.css"
+    },
+    {
+      "Id": "D:\\Shared Drive\\Projects\\Visual Studio Workspace\\Db8.Kanban\\Db8.Kanban.Blazor\\Db8.Kanban.Blazor\\wwwroot\\app.css",
+      "PackagePath": "staticwebassets\\app.css"
+    },
+    {
+      "Id": "D:\\Shared Drive\\Projects\\Visual Studio Workspace\\Db8.Kanban\\Db8.Kanban.Blazor\\Db8.Kanban.Blazor\\wwwroot\\bootstrap\\bootstrap.min.css",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css"
+    },
+    {
+      "Id": "D:\\Shared Drive\\Projects\\Visual Studio Workspace\\Db8.Kanban\\Db8.Kanban.Blazor\\Db8.Kanban.Blazor\\wwwroot\\bootstrap\\bootstrap.min.css.map",
+      "PackagePath": "staticwebassets\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Id": "D:\\Shared Drive\\Projects\\Visual Studio Workspace\\Db8.Kanban\\Db8.Kanban.Blazor\\Db8.Kanban.Blazor\\wwwroot\\favicon.png",
+      "PackagePath": "staticwebassets\\favicon.png"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Db8.Kanban.Blazor.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.Db8.Kanban.Blazor.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.build.Db8.Kanban.Blazor.props",
+      "PackagePath": "build\\Db8.Kanban.Blazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildMultiTargeting.Db8.Kanban.Blazor.props",
+      "PackagePath": "buildMultiTargeting\\Db8.Kanban.Blazor.props"
+    },
+    {
+      "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.buildTransitive.Db8.Kanban.Blazor.props",
+      "PackagePath": "buildTransitive\\Db8.Kanban.Blazor.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

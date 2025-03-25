@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Db8.Kanban.Blazor.Client.props" />
+</Project>

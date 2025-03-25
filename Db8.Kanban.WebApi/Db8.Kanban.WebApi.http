@@ -1,0 +1,6 @@
+@Db8.Kanban.WebApi_HostAddress = http://localhost:5232
+
+# GET {{Db8.Kanban.WebApi_HostAddress}}/weatherforecast/
+# Accept: application/json
+
+# ###

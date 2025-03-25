@@ -1,0 +1,89 @@
+﻿@page "/register"
+
+@using System.ComponentModel.DataAnnotations
+@using Microsoft.AspNetCore.Identity
+@using Db8.Kanban.Blazor.Components.Account.Shared
+
+@inject AppState AppState
+@inject KanbanHttpClient Http
+@inject NavigationManager NavigationManager
+
+<PageTitle>Cadastro de Usuário</PageTitle>
+
+<h1>Cadastro de Usuário</h1>
+
+<div class="row">
+    <div class="col-md-4">
+        <StatusMessage Message="@Message" />
+        <EditForm Model="Input" asp-route-returnUrl="@ReturnUrl" method="post" OnValidSubmit="RegisterUser" FormName="register">
+            <DataAnnotationsValidator />
+            @* <ValidationSummary class="text-danger" role="alert" /> *@
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Input.Email" class="form-control" aria-required="true" />
+                <label for="email">E-mail</label>
+                <ValidationMessage For="() => Input.Email" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText type="password" @bind-Value="Input.Password" class="form-control" aria-required="true" />
+                <label for="password">Senha</label>
+                <ValidationMessage For="() => Input.Password" class="text-danger" />
+            </div>
+            <div class="form-floating mb-3">
+                <InputText type="password" @bind-Value="Input.ConfirmPassword" class="form-control" aria-required="true" />
+                <label for="confirm-password">Confirmar Senha</label>
+                <ValidationMessage For="() => Input.ConfirmPassword" class="text-danger" />
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Cadastrar</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    private IEnumerable<IdentityError>? identityErrors;
+
+    [SupplyParameterFromForm]
+    private InputModel Input { get; set; } = new();
+
+    [SupplyParameterFromQuery]
+    private string? ReturnUrl { get; set; }
+
+    private string? Message => identityErrors is null ? null : $"Error: {string.Join(", ", identityErrors.Select(error => error.Description))}";
+
+    protected override void OnInitialized()
+    {
+        // AppState.OnChange += StateHasChanged;
+    }
+
+    public async Task RegisterUser(EditContext editContext)
+    {
+        var result = await Http.Register(Input.Email, Input.Password);
+
+        if (result.IsSuccessStatusCode)
+        {
+            AppState.Username = Input.Email;
+            NavigationManager.NavigateTo("kanban");
+        }
+        else
+            identityErrors = new [] { new IdentityError { Description = "Falha ao registrar usuário" } };
+    }
+
+    private sealed class InputModel
+    {
+        [Required]
+        [EmailAddress]
+        [Display(Name = "E-mail")]
+        public string Email { get; set; } = "";
+
+        [Required]
+        [StringLength(100, ErrorMessage = "A senha deve ter no mínimo {2} e no máximo {1} carácteres.", MinimumLength = 6)]
+        [DataType(DataType.Password)]
+        [Display(Name = "Senha")]
+        public string Password { get; set; } = "";
+
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirmação de Senha")]
+        [Compare("Password", ErrorMessage = "Confirmação de senha inválida.")]
+        public string ConfirmPassword { get; set; } = "";
+    }
+}

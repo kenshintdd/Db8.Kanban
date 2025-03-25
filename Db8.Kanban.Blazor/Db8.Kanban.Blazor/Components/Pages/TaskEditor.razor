@@ -1,0 +1,83 @@
+﻿@page "/task-editor"
+@page "/task-editor/{taskId}"
+@using Microsoft.IdentityModel.Tokens
+
+@inject KanbanHttpClient Http
+@inject NavigationManager NavigationManager
+@inject AppState AppState
+
+<PageTitle>Tarefa Kanban</PageTitle>
+<h2>Tarefa Kanban</h2>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <EditForm Model="Model" OnSubmit="Submit" FormName="KanbanEditor">
+            <div class="form-floating mb-3">
+                <InputText @bind-Value="Model!.TaskTitle" class="form-control" aria-required="true" />
+                <label for="taskTitle">Título da Tarefa</label>
+            </div>
+            <div class="form-floating mb-3">
+                <InputDate @bind-Value="Model!.Date" class="form-control" aria-required="true" />
+                <label for="data">Data</label>
+            </div>
+            <div class="form-floating mb-3">
+                <InputTextArea @bind-Value="Model!.Description" class="form-control" aria-required="true" />
+                <label for="description">Descrição</label>
+            </div>
+            <div class="form-floating mb-3">
+                <InputSelect @bind-Value="@Model!.Status" class="form-control" aria-required="true">
+                    @foreach (var status in Enum.GetValues(typeof(KanbanStatus)))
+                    {
+                        <option value="@status">@GetStatusText((KanbanStatus)status)</option>
+                    }
+                </InputSelect>
+                <label for="status">Status</label>
+            </div>
+            <button type="submit" class="w-100 btn btn-lg btn-primary">Salvar</button>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string taskId { get; set; }
+
+    [SupplyParameterFromForm]
+    private KanbanTask? Model { get; set; }
+
+    protected override void OnInitialized()
+    {
+        if (taskId.IsNullOrEmpty())
+        {
+            Model ??= new();
+            Model.Date = DateTime.Today;
+            Model.Username = AppState.Username;
+        }
+    }
+
+    private async Task Submit()
+    {
+        if (Model is not null)
+        {
+            await Http.AddTask(Model);
+            NavigationManager.NavigateTo("kanban");
+        }
+    }
+
+    public string GetStatusText(KanbanStatus status)
+    {
+        switch (status)
+        {
+            case KanbanStatus.Todo:
+                return "A Fazer";
+            case KanbanStatus.Ongoing:
+                return "Fazendo";
+            case KanbanStatus.Finished:
+                return "Finalizado";
+            default:
+                throw new ArgumentOutOfRangeException(nameof(status), status, null);
+        }
+    }
+}

@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Db8.Kanban.WebApi.props" />
+</Project>

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "82+QAyUmcY/gbQXKiJDu9HIzU4CI41u3AO3jnW3TLwM=",
+  "Source": "Db8.Kanban.WebApi",
+  "BasePath": "_content/Db8.Kanban.WebApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}

@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {
+      "Db8.Kanban.Core/1.0.0": {
+        "runtime": {
+          "Db8.Kanban.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Db8.Kanban.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

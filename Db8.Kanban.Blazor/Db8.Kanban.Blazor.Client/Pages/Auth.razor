@@ -1,0 +1,14 @@
+﻿@page "/auth"
+
+@using Microsoft.AspNetCore.Authorization
+
+@attribute [Authorize]
+@rendermode InteractiveWebAssembly
+
+<PageTitle>Autenticação</PageTitle>
+
+<h1>Você está logado</h1>
+
+<AuthorizeView>
+    Olá @context.User.Identity?.Name!
+</AuthorizeView>

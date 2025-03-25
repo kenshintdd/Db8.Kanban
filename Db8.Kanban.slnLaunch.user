@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "Db8.Kanban.WebApi\\Db8.Kanban.WebApi.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Db8.Kanban.Blazor\\Db8.Kanban.Blazor\\Db8.Kanban.Blazor.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

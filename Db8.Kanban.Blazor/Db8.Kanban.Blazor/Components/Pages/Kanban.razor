@@ -1,0 +1,63 @@
+﻿@page "/kanban"
+@using Microsoft.IdentityModel.Tokens
+@inject AppState AppState
+@inject KanbanHttpClient Http
+@inject NavigationManager NavigationManager
+
+<h1>Kanban</h1>
+<hr/>
+<div style="text-align:center;">
+    <NavLink class="nav-link" href="task-editor">
+        <button class="btn btn-primary" style="text-align: center;">
+            Adicionar Tarefa
+        </button>
+    </NavLink>
+</div>
+<hr />
+<div style="display: ruby;">
+    @if (Tasks is not null && Tasks.Count > 0)
+    {
+        @foreach (KanbanTask task in Tasks)
+        {
+            <div class="form-control" style="display:flow;width: 200px;margin: 15px;">
+                <label><b>Tarefa:</b> @task.TaskTitle</label>
+                <label><b>Data:</b> @task.Date.ToShortDateString()</label>
+                <label><b>Descrição:</b> @task.Description</label>
+                <label><b>Status:</b> @GetStatusText(task.Status)</label>
+            </div>
+        }
+    }
+</div>
+
+@code {
+
+    public List<KanbanTask>? Tasks { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (!AppState.Username.IsNullOrEmpty())
+            Tasks = await Http.GetTasks(AppState.Username);
+    }
+
+    public string GetStatusText(KanbanStatus status)
+    {
+        switch (status)
+        {
+            case KanbanStatus.Todo:
+                return "A Fazer";
+            case KanbanStatus.Ongoing:
+                return "Fazendo";
+            case KanbanStatus.Finished:
+                return "Finalizado";
+            default:
+                throw new ArgumentOutOfRangeException(nameof(status), status, null);
+        }
+    }
+
+    public void AddTask()
+    {
+        NavigationManager.NavigateTo("/task-editor", forceLoad: true);
+        // Tasks.Add(new KanbanTask { TaskTitle = "zeaijaeij", Date = new DateTime(), Description = "fdsgfsdfds do num sei o q q fez isso e aquilo", Status = KanbanStatus.Todo });
+        // StateHasChanged();
+    }
+}

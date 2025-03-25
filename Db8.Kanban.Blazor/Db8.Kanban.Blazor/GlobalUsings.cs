@@ -1,0 +1,1 @@
+﻿global using Db8.Kanban.Core;

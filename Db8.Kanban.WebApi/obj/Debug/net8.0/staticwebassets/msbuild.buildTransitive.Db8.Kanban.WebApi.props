@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\Db8.Kanban.WebApi.props" />
+</Project>
